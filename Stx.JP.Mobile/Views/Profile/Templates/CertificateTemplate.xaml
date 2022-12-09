@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid
+    x:Class="Stx.JP.Mobile.Views.Profile.Templates.CertificateTemplate"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:controls="clr-namespace:Stx.JP.Mobile.Controls"         
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:Stx.JP.Mobile.Behaviors"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:converter="clr-namespace:Stx.JP.Mobile.Converters"
+    x:Name="articleListTemplateCert">
+
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="../Styles.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+            <converter:StringToBooleanConverter x:Key="stringToBooleanConv" />
+        </ResourceDictionary>
+        </Grid.Resources>
+
+    <Grid x:Name="GridEntryCert" ColumnSpacing="10" RowSpacing="2" Padding="16,0,8,2" BackgroundColor="{DynamicResource Gray-White}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="48" />
+        </Grid.ColumnDefinitions>
+
+        <BoxView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,10" Style="{StaticResource SeparatorStyle}" />
+        <!--  Header -->
+        <Button Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Style="{StaticResource EditResumeEntryIconButtonStyle}" Text="{StaticResource Edit}" 
+                    BackgroundColor="{Binding Path=BackgroundColor, Source={x:Reference GridEntryCert}}"
+                Command="{Binding ParentBindingContext.EditSectionButtonCommand, Source={x:Reference articleListTemplateCert}}"
+                CommandParameter="{Binding}"/>
+
+        <Label Grid.Row="1" Text="{Binding CertificateName}" FontAttributes="Bold" Style="{StaticResource ResumeEntrySubHeaderLabelStyle}" Margin="0"
+               IsVisible="{Binding CertificateName, Converter={StaticResource stringToBooleanConv}}"/>
+        <Label Grid.Row="2" Text="{Binding IssuedBy}" Style="{StaticResource ResumeEntrySubHeaderLabelStyle}" TextColor="{DynamicResource Gray-700}" Margin="0" 
+               IsVisible="{Binding IssuedBy, Converter={StaticResource stringToBooleanConv}}"/>
+        <Label Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding DateCertified, StringFormat='{0:MMM yyyy}'}" Style="{StaticResource ResumeEntryPeriodLabelStyle}" Margin="0"
+               IsVisible="{Binding DateCertified, Converter={StaticResource stringToBooleanConv}}"/>
+        <Label Grid.Row="4" Grid.ColumnSpan="2" Text="{Binding Description}"  Style="{StaticResource ResumeEntryDetailLabelStyle}" MaxLines="2" Margin="0" 
+               IsVisible="{Binding Description, Converter={StaticResource stringToBooleanConv}}"/>
+
+    </Grid>
+</Grid>

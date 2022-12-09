@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid
+    x:Class="Stx.JP.Mobile.Views.Candidate.Templates.JobSearchListTemplate"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:controls="clr-namespace:Stx.JP.Mobile.Controls"         
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:Stx.JP.Mobile.Behaviors"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:converter="clr-namespace:Stx.JP.Mobile.Converters" xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+    x:Name="articleListTemplate">
+
+    <Grid.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary>
+                <ResourceDictionary Source="../Styles.xaml"/>
+            </ResourceDictionary>
+            <converter:BooleanToIconStringConverter x:Key="booleanToIconStringConv" />
+            <converter:BooleanToColorConverter x:Key="booleanToColorConv" />
+            <converter:DatetimeToTimeAgoConverter x:Key="DatetimeToTimeAgoConv" />
+            <converter:NumberToBooleanConverter x:Key="numberToBooleanConv" />
+            <converter:StringToBooleanConverter x:Key="stringToBooleanConv" />
+        </ResourceDictionary>
+    </Grid.Resources>
+
+    <Grid ColumnSpacing="10" RowSpacing="0" Margin="0,0,0,0" Padding="4,12,4,0"  >
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <!--  Blog image  -->
+        <sfavatar:SfAvatarView Grid.RowSpan="3" Style="{StaticResource CompanyAvatarViewStyle}" BackgroundColor="{DynamicResource Gray-White}"
+                           HeightRequest="50" WidthRequest="50" ImageSource="logoavatar.png" BorderThickness="0.75" >
+            <!--<sfavatar:SfAvatarView.ImageSource>
+                <UriImageSource Uri="logoavatar.png" CacheValidity="14"  CachingEnabled="true"/>
+                --><!--<UriImageSource Uri="{Binding ImagePath}" CacheValidity="14"  CachingEnabled="true"/>--><!--
+            </sfavatar:SfAvatarView.ImageSource>-->
+        </sfavatar:SfAvatarView>        
+
+        <!--  Job title  -->
+        <Label Grid.Column="1" Margin="0,0,0,2" FontSize="17"  LineBreakMode="WordWrap" FontAttributes="Bold"
+            LineHeight="{OnPlatform Default=-1, Android=1.25, iOS=1.25}" Text="{Binding Title}" 
+            TextColor="{DynamicResource Gray-900}" />
+
+        <!--  Company name  -->
+        <Label Grid.Row="1" Grid.Column="1" Margin="0,0,0,0" FontSize="14" FontFamily="{StaticResource Montserrat-Medium}"
+            LineBreakMode="TailTruncation" LineHeight="{OnPlatform Default=-1, Android=1.5}" Text="{Binding CorporateName}"
+            TextColor="{DynamicResource Gray-700}" />
+
+        <!--  Date, Country, Location-->
+        <StackLayout Grid.Row="2" Grid.Column="1" Margin="0,0,0,2" Orientation="Horizontal" >
+            <Label FontSize="13" FontFamily="{StaticResource Montserrat-Regular}" LineHeight="{OnPlatform Default=-1, Android=1.5}" TextColor="{DynamicResource Gray-700}"
+                   Text="{Binding DateStart, Converter={StaticResource DatetimeToTimeAgoConv}}" 
+                   IsVisible="{Binding DateStart, Converter={StaticResource stringToBooleanConv}}"/>
+            <Label FontSize="13" FontFamily="{StaticResource Montserrat-Regular}" LineHeight="{OnPlatform Default=-1, Android=1.5}" TextColor="{DynamicResource Gray-700}"
+                   IsVisible="{Binding Country, Converter={StaticResource stringToBooleanConv}}">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text=" | " />
+                        <Span Text="{Binding Country}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label FontSize="13" FontFamily="{StaticResource Montserrat-Regular}" LineHeight="{OnPlatform Default=-1, Android=1.5}" TextColor="{DynamicResource Gray-700}"
+                   IsVisible="{Binding Location, Converter={StaticResource stringToBooleanConv}}">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text=" | " />
+                        <Span Text="{Binding Location}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </StackLayout>
+
+        <!--  Date and Category -->
+        <Label Grid.Row="3" Grid.Column="1" Margin="0,0,0,4" FontSize="12" LineHeight="{OnPlatform Default=-1, Android=1.5}" 
+            TextColor="{DynamicResource Green-Theme}" IsVisible="{Binding Salary, Converter={StaticResource numberToBooleanConv}, ConverterParameter=3}">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="{Binding SalaryCurrCD}"/>
+                    <Span Text=" " />
+                    <Span Text="{Binding Salary, StringFormat='{0:#,###}'}" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+        <StackLayout Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1" Orientation="Horizontal" >
+            <!--<buttons:SfChipGroup Type="Action">
+                <buttons:SfChipGroup.Items>
+                    <buttons:SfChip Text="Extra Small" FontSize="12" Margin="0" Padding="0" HeightRequest="12" BackgroundColor="Brown" BorderThickness="0"/>
+                    <buttons:SfChip Text="Small" FontSize="12" Margin="0"/>
+                    <buttons:SfChip Text="Medium" FontSize="12" Margin="0"/>
+                    <buttons:SfChip Text="Large" FontSize="12" Margin="0"/>
+                </buttons:SfChipGroup.Items>
+            </buttons:SfChipGroup>-->
+            <border:SfBorder x:Name="border" BackgroundColor= "{DynamicResource Gray-200}" CornerRadius="5" BorderWidth="0" Padding="8,0,8,0" HeightRequest="20">
+                <Label Text="Hot" TextColor="{DynamicResource Gray-700}"/>
+            </border:SfBorder>
+            <border:SfBorder x:Name="border2" BackgroundColor= "{DynamicResource Gray-200}" CornerRadius="5" BorderWidth="0" Padding="8,0,8,0" HeightRequest="20">
+                <Label Text="Hot"  TextColor="{DynamicResource Gray-700}"/>
+            </border:SfBorder>
+
+        </StackLayout>
+
+        <!-- Icon Buttons - Bookmark|Share|Save -->
+        <StackLayout Grid.Row="0" Grid.Column="2" Grid.RowSpan="5" VerticalOptions="Start" HorizontalOptions="End"  >
+
+            <!--  Bookmark Button-->
+            <buttons:SfButton IsVisible="{Binding Path=IsShowBookmark, Source={x:Reference articleListTemplate}}" 
+                Command="{Binding ParentBindingContext.BookmarkCommand, Source={x:Reference articleListTemplate}}"
+                CommandParameter="{Binding}" Style="{StaticResource NavigationBarButtonStyle}"   
+                Text="{Binding IsBookmarked, FallbackValue={StaticResource Favourite}, Converter={StaticResource booleanToIconStringConv}, ConverterParameter=1}"
+                TextColor="{Binding IsBookmarked, FallbackValue={DynamicResource Gray-100}, Converter={StaticResource booleanToColorConv}, ConverterParameter=4}"
+                />
+            <!--TextColor="{Binding IsBookmarked, Converter={x:StaticResource boolToColorConverter}, ConverterParameter=4}"--> 
+
+            <!--  Share Button -->
+            <buttons:SfButton Text="{StaticResource Share}" Style="{StaticResource NavigationBarButtonStyle}" TextColor="{DynamicResource Gray-400}"
+                    Command="{Binding ParentBindingContext.ShareButtonCommand, Source={x:Reference articleListTemplate}}"
+                    x:Name="shareButton" CommandParameter="{Binding .}" Margin="0" Padding="0"   />
+            
+        </StackLayout>
+
+        <BoxView Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource SeparatorStyle}" Margin="0,16,0,0" />
+
+    </Grid>
+</Grid>

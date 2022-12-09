@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+        xmlns="http://xamarin.com/schemas/2014/forms"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+        xmlns:converter="clr-namespace:Stx.JP.Mobile.Converters"
+        xmlns:viewModel="clr-namespace:Stx.JP.Mobile.ViewModels.Candidate"     
+        xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+        xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+        xmlns:template="clr-namespace:Stx.JP.Mobile.Views.Candidate.Templates" 
+        xmlns:pulltoRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms" 
+        xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms" 
+        xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+        BackgroundColor="{DynamicResource Gray-100}"
+        x:Class="Stx.JP.Mobile.Views.Candidate.MyNotificationPage"
+        NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid Padding="0" HorizontalOptions="FillAndExpand"  Margin="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <gradient:SfGradientView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+                    <gradient:SfGradientView.BackgroundBrush>
+                        <gradient:SfLinearGradientBrush>
+                            <gradient:SfLinearGradientBrush.GradientStops>
+                                <gradient:SfGradientStop Color="{StaticResource PrimaryColor}" Offset="0.0" />
+                                <gradient:SfGradientStop Color="{StaticResource PrimaryDarkenColor}" Offset="1.0" />
+                            </gradient:SfLinearGradientBrush.GradientStops>
+                        </gradient:SfLinearGradientBrush>
+                    </gradient:SfGradientView.BackgroundBrush>
+                </gradient:SfGradientView>
+
+                  <!--Back button command-->
+                <!--<buttons:SfButton x:Name="BtnBack" Grid.Column="0" HorizontalOptions="Start" CornerRadius="4" 
+                                  TextColor="{DynamicResource Gray-300}" Style="{StaticResource IconButtonStyle}" Text="{StaticResource Back}" Clicked="BtnBack_Clicked" />-->
+
+                <!--  Page Title  -->
+                <Label Grid.Column="1" Text="My Collection" Margin="10,0" HeightRequest="50" HorizontalOptions="Start" LineHeight="1.25" 
+                               FontSize="16" FontFamily="{StaticResource Montserrat-Medium}" TextColor="{DynamicResource Gray-300}"
+                               VerticalOptions="Center" VerticalTextAlignment="Center" />
+
+                <!--Refresh button command-->
+                <buttons:SfButton x:Name="BtnRefresh" Grid.Column="2" Command="{Binding RefreshListCommand}"  HorizontalOptions="End" VerticalOptions="Center" WidthRequest="70"
+                            CornerRadius="4" TextColor="{DynamicResource Gray-300}" Style="{StaticResource IconButtonStyle}" FontSize="14" Text="Refresh" />
+            </Grid>
+            
+            <tabView:SfTabView BackgroundColor="{DynamicResource Gray-White}" VisibleHeaderCount="3" EnableSwiping="True" OverflowMode="Scroll">
+                <tabView:SfTabView.SelectionIndicatorSettings>
+                    <tabView:SelectionIndicatorSettings StrokeThickness="3" Color="{DynamicResource PrimaryColor}" />
+                </tabView:SfTabView.SelectionIndicatorSettings>
+               
+                <tabView:SfTabItem
+                Title="Notifications"
+                SelectionColor="{DynamicResource PrimaryColor}"
+                TitleFontColor="{DynamicResource Gray-700}"
+                TitleFontFamily="{StaticResource Montserrat-Medium}"
+                TitleFontSize="14">
+                    <tabView:SfTabItem.Content>
+                        <StackLayout x:Name="ListViewApldJobs" 
+                         IsVisible="true"
+                        HorizontalOptions="FillAndExpand"
+                        Padding="0" 
+                                     BackgroundColor="{DynamicResource Gray-White}"/>
+                    </tabView:SfTabItem.Content>
+                </tabView:SfTabItem>
+
+                <tabView:SfTabItem
+                Title="Job Alerts"
+                SelectionColor="{DynamicResource PrimaryColor}"
+                TitleFontColor="{DynamicResource Gray-700}"
+                TitleFontFamily="{StaticResource Montserrat-Medium}"
+                TitleFontSize="14">
+                    <tabView:SfTabItem.Content>
+                        <!--<view:MyOrdersView />-->
+                        <Label Text="My xxdd Job Alerts ewerwefsdfsadfsdf"/>
+                    </tabView:SfTabItem.Content>
+
+                </tabView:SfTabItem>
+
+            </tabView:SfTabView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

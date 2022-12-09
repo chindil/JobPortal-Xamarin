@@ -1,0 +1,335 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        x:Class="Stx.JP.Mobile.Views.Profile.Styles"
+        xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+        xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+        xmlns:control="clr-namespace:Stx.JP.Mobile.Controls"
+        xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+        xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+        xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms" 
+        >
+
+    <Color x:Key="TappedBackgroundColor">#eaeaea</Color>
+    <Color x:Key="Transparent">Transparent</Color>
+    <Color x:Key="LightGreen">#35c659</Color>
+    <Color x:Key="OrangeyYellow">#fcbc0f</Color>
+
+    <x:String x:Key="Add">&#xe837;</x:String>
+    <x:String x:Key="AddDouble">&#xe856;</x:String>
+    <x:String x:Key="Edit">&#xe7b6;</x:String>
+    <x:String x:Key="Edit2">&#xe8fa;</x:String>
+    <x:String x:Key="CloseBold">&#xe781;</x:String>
+    <x:String x:Key="Close">&#xe782;</x:String>
+    <x:String x:Key="Next">&#xe83d;</x:String>
+    <x:String x:Key="Home">&#xe706;</x:String>
+    <x:String x:Key="Delete">&#xe7a0;</x:String>
+    <x:String x:Key="Attachment">&#xe8f8;</x:String>
+    <x:String x:Key="Interests">&#xe701;</x:String>
+    <x:String x:Key="ClearBookmark">&#xe734;</x:String>
+    <x:String x:Key="Profile">&#xe70e;</x:String>
+    <x:String x:Key="Available">&#xe720;</x:String>
+    <x:String x:Key="Mail">&#xe725;</x:String>
+    <x:String x:Key="VoiceCall">&#xe71c;</x:String>
+    <x:String x:Key="Activity">&#xe76c;</x:String>
+    <x:String x:Key="Notification">&#xe875;</x:String>
+    <x:String x:Key="Help">&#xe7e7;</x:String>
+    <x:String x:Key="Preference">&#xe8a9;</x:String>
+    <x:String x:Key="Resume">&#xe8f7;</x:String>
+    <x:String x:Key="Back">&#xe85d;</x:String>
+    <x:String x:Key="Darkmode">&#xe732;</x:String>  
+    
+    <!--
+    <x:String x:Key="Add">&#xe730;</x:String>
+    <x:String x:Key="Edit">&#xe727;</x:String>
+    <x:String x:Key="Close">&#xe724;</x:String>
+    <x:String x:Key="Next">&#xe71a;</x:String>
+    <x:String x:Key="Home">&#xe706;</x:String>
+    <x:String x:Key="Delete">&#xe716;</x:String>
+    <x:String x:Key="Attachment">&#xe71e;</x:String>
+    <x:String x:Key="Interests">&#xe701;</x:String>
+    <x:String x:Key="ClearBookmark">&#xe734;</x:String>
+    <x:String x:Key="Profile">&#xe70e;</x:String>
+    <x:String x:Key="Available">&#xe720;</x:String>
+    <x:String x:Key="Mail">&#xe725;</x:String>
+    <x:String x:Key="VoiceCall">&#xe71c;</x:String>
+    <x:String x:Key="Activity">&#xe70d;</x:String>
+    <x:String x:Key="Notification">&#xe700;</x:String>
+    <x:String x:Key="Help">&#xe72c;</x:String>
+    <x:String x:Key="Preference">&#xe72b;</x:String>
+    <x:String x:Key="Resume">&#xe737;</x:String>
+    <x:String x:Key="Back">&#xe709;</x:String>
+    <x:String x:Key="Darkmode">&#xe720;</x:String>-->
+
+    <!--  Common style for rounded profile image  -->
+    <Style x:Key="ProfileBorderStyle" TargetType="border:SfBorder">
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="CornerRadius" Value="24" />
+    </Style>
+    <!--  Common style for square buttons  -->
+    <Style x:Key="SquareButtonStyle" TargetType="buttons:SfButton">
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
+        <Setter Property="WidthRequest" Value="1203" />
+        <Setter Property="CornerRadius" Value="1" />
+        <Setter Property="BorderWidth" Value="1"/>
+        <Setter Property="BorderColor" Value="{DynamicResource PrimaryColor}"/>
+    </Style>
+    <!--  Common style for profile page SfButton  -->
+    <Style x:Key="ProfileButtonStyle" TargetType="buttons:SfButton">
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Fill" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="CornerRadius" Value="4" />
+    </Style>
+    <!--  Common style for icon buttons  -->
+    <Style x:Key="IconButtonStyle" TargetType="buttons:SfButton">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Transparent}" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="WidthRequest" Value="40" />
+    </Style>
+    <!--  Common style for country auto complete-->
+    <Style x:Key="CountryAutoCompleteStyle" TargetType="autocomplete:SfAutoComplete">
+        <Setter Property="DisplayMemberPath" Value="Name" />
+        <Setter Property="AutoCompleteMode" Value="Suggest" />
+        <Setter Property="NoResultsFoundText" Value="Country not in the list" />
+        <Setter Property="NoResultsFoundTextColor" Value="OrangeRed" />
+        <Setter Property="SuggestionBoxPlacement" Value="Auto" />
+        <Setter Property="MaximumSuggestion" Value="4" />
+    </Style>
+
+    <!--  Common style for profile line grid -->
+    <Style x:Key="CommonProfileLineGridStyle" TargetType="Grid">
+        <Setter Property="ColumnSpacing" Value="10" />
+        <Setter Property="Padding" Value="16,10" />
+    </Style>
+
+    <!--  Settings style for profile line grid -->
+    <Style x:Key="SettingsProfileLineGridStyle" TargetType="Grid">
+        <Setter Property="ColumnSpacing" Value="16" />
+        <Setter Property="Padding" Value="16,8,16,8" />
+    </Style>
+
+    <!--  Common style for profile page icon Label  -->
+    <Style x:Key="ProfileIconLabelStyle" TargetType="Label">
+        <Setter Property="Margin" Value="16,8" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+    </Style>
+
+    <!--  Common style for contact profile page icon Label  -->
+    <Style x:Key="CommonProfileIconLabelStyle" TargetType="Label">
+        <Setter Property="Margin" Value="16,8" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+    </Style>
+
+    <!--  Common style for profile page Label  -->
+    <Style x:Key="ProfileLabelStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-Medium}" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="Margin" Value="16, 12" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Transparent}" />
+        <Setter Property="LineHeight" Value="{OnPlatform Default=-1, Android=1.5}" />
+        <Setter Property="LineBreakMode" Value="TailTruncation" />
+        <Setter Property="MaxLines" Value="2" />
+    </Style>
+
+    <!--  Common style for contact profile page Label  -->
+    <Style x:Key="CommonProfileLabelStyle" TargetType="Label">
+        <Setter Property="Margin" Value="4, 12" />
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-Medium}" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
+        <Setter Property="LineHeight" Value="{OnPlatform Default=1.5, iOS=-1}" />
+    </Style>
+
+    <!--  Common style for separator BoxView  -->
+    <Style x:Key="SeparatorStyle" TargetType="BoxView">
+        <Setter Property="HeightRequest" Value="1" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-200}" />
+    </Style>
+
+    <!--  Common style for separator BoxView  -->
+    <Style x:Key="SettingsSeparatorStyle" TargetType="BoxView">
+        <Setter Property="HeightRequest" Value="1" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-200}" />
+        <Setter Property="Margin" Value="0,0,0,10" />
+    </Style>
+
+    <!-- Common style for labels -->
+    <Style x:Key="LabelStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}"/>
+        <Setter Property="HeightRequest" Value="24"/>
+        <Setter Property="LineHeight" Value="{OnPlatform Android=1.5, Default=-1}"/>
+    </Style>
+
+    <!--Common boxview style-->
+    <Style x:Key="BoxViewStyle" TargetType="BoxView">
+        <Setter Property="WidthRequest" Value="1"/>
+        <Setter Property="HeightRequest" Value="24"/>
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-400}"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+    </Style>
+
+    <!--Common title label style-->
+    <Style x:Key="TitleLabelStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}"/>
+        <Setter Property="LineHeight" Value="{OnPlatform Android=-1,Default=-1}"/>
+        <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+        <Setter Property="HorizontalTextAlignment" Value="Start"/>
+        <Setter Property="VerticalTextAlignment" Value="Center"/>
+        <Setter Property="TextColor" Value="{DynamicResource Green-Theme}"/>
+    </Style>
+
+    <!--Common content label style-->
+    <Style x:Key="ContentLabelStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-300}"/>
+        <Setter Property="HorizontalTextAlignment" Value="Start"/>
+        <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-Medium}"/>
+        <Setter Property="LineHeight" Value="{OnPlatform Android=1.5,Default=-1}"/>
+    </Style>
+
+    <!--Common follower count label style-->
+    <Style x:Key="FollowerCountLabelStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-100}"/>
+        <Setter Property="HorizontalTextAlignment" Value="Center"/>
+    </Style>
+
+    <!--Common follwer title label style-->
+    <Style x:Key="FollowerTitleLabelStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-Medium}"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-300}"/>
+    </Style>
+
+    <!--  Common style for resume category add icon button  -->
+    <Style x:Key="AddNewResumeEntryIconButtonStyle" TargetType="Button">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="TextColor" Value="{DynamicResource Green-Theme}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="HorizontalOptions" Value="End" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="WidthRequest" Value="60" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+    </Style>
+    <!--  Common style for resume edit entry icon button  -->
+    <Style x:Key="EditResumeEntryIconButtonStyle" TargetType="Button">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="HorizontalOptions" Value="End" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="WidthRequest" Value="48" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+    </Style>
+    <!--  Common style for resume category icon --><!--
+    <Style x:Key="ResumeCatgIconLabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+    </Style>-->
+    <!--Common follwer resume entry title label style-->
+    <Style x:Key="ResumeEntryHeaderLabelStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}"/>
+        <Setter Property="HorizontalTextAlignment" Value="Start"/>
+        <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+        <!--<Setter Property="FontFamily" Value="{StaticResource Montserrat-Bold}"/>-->
+        <Setter Property="LineHeight" Value="{OnPlatform Android=1.5,Default=-1}"/>
+        <Setter Property="Margin" Value="0,0,0,4"/>
+    </Style>
+    <!--Common follwer resume entry sub-title label style-->
+    <Style x:Key="ResumeEntrySubHeaderLabelStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-700}"/>
+        <Setter Property="HorizontalTextAlignment" Value="Start"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <!--<Setter Property="FontFamily" Value="{StaticResource Montserrat-Medium}"/>-->
+        <Setter Property="LineHeight" Value="{OnPlatform Android=1.5,Default=-1}"/>
+        <Setter Property="Margin" Value="0,0,0,4"/>
+    </Style>
+    <!--Common follwer resume entry year label style-->
+    <Style x:Key="ResumeEntryPeriodLabelStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}"/>
+        <Setter Property="HorizontalTextAlignment" Value="Start"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-Medium}"/>
+        <Setter Property="LineHeight" Value="{OnPlatform Android=1.5,Default=-1}"/>
+        <Setter Property="Margin" Value="0,0,0,4"/>
+    </Style>
+    <!--Common follwer resume entry detail label style-->
+    <Style x:Key="ResumeEntryDetailLabelStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-700}"/>
+        <Setter Property="HorizontalTextAlignment" Value="Start"/>
+        <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-Medium}"/>
+        <Setter Property="LineHeight" Value="{OnPlatform Android=1,Default=-1}"/>
+    </Style>
+    <!--  Common style for rounded buttons  -->
+    <Style x:Key="GradientButtonStyle" TargetType="buttons:SfButton">
+        <Setter Property="BorderColor" Value="{DynamicResource Gray-300}" />
+        <Setter Property="BorderWidth" Value="1" />
+        <Setter Property="CornerRadius" Value="22" />
+        <Setter Property="WidthRequest" Value="44" />
+        <Setter Property="HeightRequest" Value="44" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="BackgroundGradient">
+            <Setter.Value>
+                <graphics:SfLinearGradientBrush>
+                    <graphics:SfLinearGradientBrush.GradientStops>
+                        <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                        <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                    </graphics:SfLinearGradientBrush.GradientStops>
+                </graphics:SfLinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Stx.JP.Mobile.Views.Candidate.JobDetailPage"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:local="clr-namespace:Stx.JP.Mobile.Views.Candidate"
+             xmlns:viewModel="clr-namespace:Stx.JP.Mobile.ViewModels.Candidate" 
+             xmlns:converter="clr-namespace:Stx.JP.Mobile.Converters" xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms" xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+             BackgroundColor="{DynamicResource Gray-300}"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <converter:NumberToBooleanConverter x:Key="numberToBooleanConv" />
+            <converter:BooleanToIconStringConverter x:Key="boolToIconStringConverter" />
+            <converter:DatetimeToTimeAgoConverter x:Key="DatetimeToTimeAgoConv" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid RowSpacing="0" Padding="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            
+            <!-- Title Bar View -->
+            <Grid Grid.Row="0" RowSpacing="0" ColumnSpacing="0" HeightRequest="50" Padding="0,0,0,0" BackgroundColor="{DynamicResource Gray-White}" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <buttons:SfButton x:Name="BtnBack" Grid.Column="0" Margin="0,0,4,0" Text="{StaticResource Back}" CornerRadius="4" Style="{StaticResource IconButtonStyle}"
+                                           WidthRequest="40" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Clicked="BtnBack_Clicked" >
+                    <Label Text="{StaticResource Previous}" FontFamily="{StaticResource FontIcons}" TextColor="{DynamicResource Gray-600}" 
+                                           FontSize="18" Margin="0" VerticalTextAlignment="Center" HorizontalOptions="Center" />
+                </buttons:SfButton>
+                <Label Grid.Column="1" Text="{Binding JobOrder.Title}" TextColor="{DynamicResource PrimaryDarkColor}" FontSize="16" Margin="0"
+                               FontFamily="{DynamicResource Montserrat-SemiBold}" 
+                               HorizontalOptions="CenterAndExpand" VerticalOptions="Center" VerticalTextAlignment="Center" LineBreakMode="TailTruncation"/>
+                <!--<Label Text="posted on 24 Jan 2021" TextColor="{DynamicResource Gray-400}" FontSize="12" Margin="0,0,10,0"
+                               FontFamily="{DynamicResource Montserrat-Medium}" LineHeight="{OnPlatform Android=1.5, Default=-1}"
+                               HorizontalOptions="End" VerticalOptions="Center" />-->
+                <!--  Share Icon-Button -->
+                <buttons:SfButton Grid.Column="2" Command="{Binding BookmarkCommand}" Text="{StaticResource Share}" Style="{StaticResource NavigationBarButtonStyle}" 
+                            x:Name="shareButton" CommandParameter="{Binding .}" Margin="0" Padding="0" HorizontalOptions="End"/>
+            </Grid>
+            <!-- Seperator -->
+            <BoxView Grid.Row="1" HeightRequest="1" BackgroundColor="{DynamicResource Gray-300}" Margin="0,0,0,0"/>
+
+            <ScrollView Grid.Row="2">
+                <StackLayout >
+
+                    <Grid Grid.Row="0" RowSpacing="0" ColumnSpacing="0" BackgroundColor="{DynamicResource Gray-White}">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Background image -->
+                        <Image Grid.RowSpan="4" Grid.ColumnSpan="3" Aspect="AspectFill" BackgroundColor="{DynamicResource Gray-White}">
+                            <Image.Source>
+                                <UriImageSource Uri="{Binding BackgroundImage}" CacheValidity="14" CachingEnabled="true"/>
+                            </Image.Source>
+                        </Image>
+                        
+
+                        <!--BEGIN - JOB DETAILS ========================================================-->
+                        
+                        <!--Earlier job apply reminder -->
+                        <border:SfBorder Grid.Row="2" Grid.ColumnSpan="3" Padding="4" BackgroundColor="#F7F2C7" BorderWidth="0"  
+                                     IsVisible="{Binding JobOrder.PrevSendoutID, FallbackValue=False, Converter={StaticResource numberToBooleanConv}, ConverterParameter=1}">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                                <Label Margin="0,4,0,4" Padding="2" Text="{DynamicResource Ok}" FontFamily="{StaticResource FontIcons}" TextColor="Green" FontSize="16"  />
+                                <Label Padding="0" Text="You have applied for this job earlier." TextColor="{DynamicResource Gray-700}" VerticalOptions="Center" HorizontalOptions="Start"/>
+                            </StackLayout>
+                        </border:SfBorder>
+                        
+                        <!--Icon-Buttons-->
+                        <StackLayout Grid.Row="3" Grid.Column="2" Grid.RowSpan="2" Orientation="Vertical" Spacing="0" Margin="0,10,4,0" >
+                            <!-- Report Icon-Button-->
+                            <buttons:SfButton Command="{Binding BookmarkCommand}" CommandParameter="{Binding}" Style="{StaticResource NavigationBarButtonStyle}" Margin="0" Padding="0" 
+                                Text="{DynamicResource Report}"/>
+                            <!-- Share Icon-Button --><!--
+                            <buttons:SfButton Command="{Binding BookmarkCommand}" 
+                                              Text="{Binding JobOrder.IsBookmarked, FallbackValue={StaticResource Favourite}, Converter={StaticResource boolToIconStringConverter}, ConverterParameter=1}"
+                                              Style="{StaticResource NavigationBarButtonStyle}" x:Name="IconBtnBookmark" CommandParameter="{Binding .}" Margin="0" Padding="0" />-->
+                        </StackLayout>
+                        
+                        <!-- Job Title -->
+                        <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding JobOrder.Title}" FontFamily="{StaticResource Montserrat-SemiBold}" 
+                               LineBreakMode="WordWrap" FontSize="18" HorizontalOptions="StartAndExpand" Margin="16,8,16,4" TextColor="{DynamicResource Gray-800}" />
+
+                        <!-- Company Logo -->
+                        <sfavatar:SfAvatarView Grid.Row="4" Grid.Column="0" Margin="16,4,16,0" Style="{StaticResource CompanyAvatarViewStyle}" BackgroundColor="{DynamicResource Gray-White}"
+                            HeightRequest="50" WidthRequest="50" ImageSource="logoavatar.png" BorderThickness="0.75">
+                        </sfavatar:SfAvatarView>
+
+                        <StackLayout Grid.Row="4" Grid.Column="1" Padding="0" Spacing="0" Margin="0,8,0,0" HorizontalOptions="StartAndExpand" >
+                            <!-- Corporate Name -->
+                            <Label Style="{StaticResource ContentLabelStyle}" Text="{Binding JobOrder.CorporateName}" />
+
+                            <!-- Country -->
+                            <Label Style="{StaticResource ContentLabelStyle}" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding JobOrder.Country}" />
+                                        <Span Text=" " />
+                                        <Span Text="Binding JobOrder.Location}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <!--JobType | Salary | Time etc-->
+                        </StackLayout>
+
+                        <Label Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Text="posted on 24 Jan 2021" TextColor="{DynamicResource Gray-400}" FontSize="12" Margin="0,0,10,0"
+                               FontFamily="{DynamicResource Montserrat-Medium}" HorizontalOptions="End" HorizontalTextAlignment="End" VerticalOptions="Center" />
+                    </Grid>
+
+                    <tabView:SfTabView BackgroundColor="{DynamicResource Gray-White}" VisibleHeaderCount="2" EnableSwiping="True" OverflowMode="Scroll" VerticalOptions="FillAndExpand">
+                        <tabView:SfTabView.SelectionIndicatorSettings>
+                            <tabView:SelectionIndicatorSettings StrokeThickness="2" Color="{DynamicResource PrimaryColor}" />
+                        </tabView:SfTabView.SelectionIndicatorSettings>
+
+                        <tabView:SfTabItem Title="Job Description" SelectionColor="{DynamicResource PrimaryColor}" TitleFontColor="{DynamicResource Gray-700}"
+                                TitleFontFamily="{StaticResource Montserrat-Medium}" TitleFontSize="14">
+                            <tabView:SfTabItem.Content>
+                                <StackLayout Padding="16,16,10,0" BackgroundColor="{DynamicResource Gray-White}" HorizontalOptions="FillAndExpand" >
+                                    <Label Text="{Binding JobOrder.Description}" MinimumHeightRequest="50" FontSize="16" TextColor="{DynamicResource Gray-Black}"/>
+                                    <Label Text="{Binding JobOrder.Requirements}" MinimumHeightRequest="50" FontSize="16" TextColor="{DynamicResource Gray-900}"/>
+                                    
+                                    <StackLayout Padding="16,2,10,0" BackgroundColor="{DynamicResource Gray-White}">
+                                        <Label Text="{Binding JobOrder.Benifits}" MinimumHeightRequest="50" FontSize="12"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </tabView:SfTabItem.Content>
+                        </tabView:SfTabItem>
+
+                        <tabView:SfTabItem Title="Company" SelectionColor="{DynamicResource PrimaryColor}" TitleFontColor="{DynamicResource Gray-700}"
+                            TitleFontFamily="{StaticResource Montserrat-Medium}" TitleFontSize="14">
+                            <tabView:SfTabItem.Content>
+                                <StackLayout Padding="16,2,10,0" BackgroundColor="{DynamicResource Gray-White}">
+                                    <Label Text="About the company" HeightRequest="30" FontSize="16" FontAttributes="Bold"/>
+                                </StackLayout>
+                            </tabView:SfTabItem.Content>
+                        </tabView:SfTabItem>
+
+                    </tabView:SfTabView>
+
+                </StackLayout>
+            </ScrollView>
+
+            <!-- Seperator -->
+            <BoxView Grid.Row="3" HeightRequest="1" BackgroundColor="{DynamicResource Gray-300}" Margin="0,0,0,0"/>
+            
+            <!--Bookmark & Apply Button-->
+            <Grid Grid.Row="4" RowSpacing="0" Padding="16,8,16,6" Margin="0" BackgroundColor="{DynamicResource Gray-White}" 
+                        HorizontalOptions="Fill" VerticalOptions="Fill" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*" />
+                    <ColumnDefinition Width="0.7*" />
+                </Grid.ColumnDefinitions>
+                <!-- Bookmark button -->
+                <buttons:SfButton x:Name="BtnBookmark" Grid.Row="0" Grid.Column="0" Command="{Binding SaveButtonCommand}" CommandParameter="{Binding}"  
+                            Style="{StaticResource SquareButtonStyle}" ShowIcon="{Binding JobOrder.IsBookmarked}"
+                            TextColor="{DynamicResource Gray-900}" FontSize="16" FontFamily="{DynamicResource Montserrat-SemiBold}" 
+                            HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" >
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center" Spacing="0" HorizontalOptions="Center">
+                        <Label Text="{Binding JobOrder.IsBookmarked, FallbackValue={StaticResource Favourite}, Converter={StaticResource boolToIconStringConverter}, ConverterParameter=1}" 
+                               FontFamily="{StaticResource FontIcons}" FontSize="16" Margin="0" VerticalTextAlignment="Center"/>
+                        <Label Text="{Binding BookmarkButtonText}"  Margin="0" Padding="6,0,0,0" VerticalTextAlignment="Center" FontFamily="{DynamicResource Montserrat-SemiBold}"/>
+                    </StackLayout>                    
+                </buttons:SfButton>
+
+                <!-- Submit-Job (Apply) button -->
+                <buttons:SfButton x:Name="BtnApply" Grid.Row="0" Grid.Column="1" Command="{Binding ApplyButtonCommand}" CommandParameter="{x:Reference BtnApply}" 
+                            Style="{StaticResource SfGradientButtonStyle}" CornerRadius="1" FontSize="16" FontFamily="{DynamicResource Montserrat-SemiBold}"
+                            Text="Apply" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            </Grid>
+
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

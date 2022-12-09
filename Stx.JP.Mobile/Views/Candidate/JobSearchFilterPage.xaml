@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Stx.JP.Mobile.Views.Candidate.JobSearchFilterPage"
+             xmlns:Local="clr-namespace:Stx.JP.Mobile.Views.Candidate"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:range="clr-namespace:Syncfusion.SfRangeSlider.XForms;assembly=Syncfusion.SfRangeSlider.XForms" 
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:numericBox="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms" 
+             xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms" 
+             xmlns:listview="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             x:Name="jobSearchFilterPage" 
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="0,0,0,0" Padding="0,0,0,0" RowSpacing="0" ColumnSpacing="0" HeightRequest="55" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.6*" />
+                    <ColumnDefinition Width="0.4*" />
+                </Grid.ColumnDefinitions>
+
+                <gradient:SfGradientView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                    <gradient:SfGradientView.BackgroundBrush>
+                        <gradient:SfLinearGradientBrush>
+                            <gradient:SfLinearGradientBrush.GradientStops>
+                                <gradient:SfGradientStop Color="{StaticResource PrimaryColor}" Offset="0.0" />
+                                <gradient:SfGradientStop Color="{StaticResource PrimaryDarkenColor}" Offset="1.0" />
+                            </gradient:SfLinearGradientBrush.GradientStops>
+                        </gradient:SfLinearGradientBrush>
+                    </gradient:SfGradientView.BackgroundBrush>
+                </gradient:SfGradientView>
+
+                <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start">
+                    <!--  Back button -->
+                    <buttons:SfButton x:Name="backButton" Text="{StaticResource Close}" Clicked="BtnCancel_Clicked" 
+                                       CornerRadius="1" TextColor="{DynamicResource Gray-300}" Style="{StaticResource IconButtonStyle}" />
+                    
+                    <Label Text="Set Filters" FontSize="16" FontAttributes="Bold" HorizontalOptions="Start" 
+                           VerticalOptions="Center" TextColor="{DynamicResource Gray-300}"/>
+                </StackLayout>
+
+                <!--  Reset Filter Button  -->
+                <buttons:SfButton x:Name="BtnReset" Grid.Row="0" Grid.Column="1" Command="{Binding ResetFilterButtonCommand}" CommandParameter="{x:Reference BtnReset}" Padding="10,0"
+                                  Text="Reset" WidthRequest="90" HorizontalOptions="End" CornerRadius="4" FontSize="16" HorizontalTextAlignment="End"
+                                  TextColor="{DynamicResource Gray-300}" Style="{StaticResource IconButtonStyle}" />
+
+            </Grid>
+
+            <ScrollView Grid.Row="1" Padding="0,0,0,55">
+                <Grid x:Name="mainGrid" BindingContext="{Binding JobFilters}" RowSpacing="6" Margin="20,8">
+                    <Grid.Resources>
+                        <Style TargetType="inputLayout:SfTextInputLayout">
+                            <Setter Property="Margin" Value="0" />
+                            <Setter Property="Grid.Column" Value="0" />
+                            <Setter Property="InputViewPadding" Value="14" />
+                            <Setter Property="OutlineCornerRadius" Value="2" />
+                            <Setter Property="ReserveSpaceForAssistiveLabels" Value="False" />
+                        </Style>
+                        <Style TargetType="Entry">
+                            <Setter Property="ClearButtonVisibility" Value="WhileEditing" />
+                            <Setter Property="Margin" Value="0" />
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*" />
+                        <ColumnDefinition Width="0.5*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <inputLayout:SfTextInputLayout Grid.Row="1" Grid.ColumnSpan="2" Hint="Job title, keyword or company name" ContainerType="Outlined" Margin="0" >
+                        <Entry Text="{Binding Keyword, Mode=TwoWay}" />
+                    </inputLayout:SfTextInputLayout>
+                    <inputLayout:SfTextInputLayout Grid.Row="2" Grid.ColumnSpan="2" Hint="Select job location" ContainerType="Outlined" >
+                        <Entry Text="{Binding Location, Mode=TwoWay}"/>
+                    </inputLayout:SfTextInputLayout>
+                    <inputLayout:SfTextInputLayout Grid.Row="3" Grid.ColumnSpan="2" Hint="Select job industry" ContainerType="Outlined" >
+                        <Entry Text="{Binding Industry, Mode=TwoWay}" />
+                    </inputLayout:SfTextInputLayout>
+                    <inputLayout:SfTextInputLayout Grid.Row="4" Grid.ColumnSpan="2" Hint="Select job specialty" ContainerType="Outlined" >
+                        <Entry Text="{Binding Specialty, Mode=TwoWay}" />
+                    </inputLayout:SfTextInputLayout>
+
+                    <Frame Grid.Row="6" Grid.ColumnSpan="2" BorderColor="{DynamicResource Gray-400}" CornerRadius="2" HasShadow="False" HorizontalOptions="Fill" 
+                       BackgroundColor="Transparent" Padding="8" Margin="0,0,0,6">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Text="Salary Range" Margin="0,0,0,0"/>
+                            <inputLayout:SfTextInputLayout Grid.Row="1" Grid.Column="0" Hint="Min. Salary" ContainerType="Outlined" Margin="0" InputViewPadding="12">
+                                <numericBox:SfNumericTextBox Value="{Binding SalaryFrom}" FormatString="n0"/>
+                            </inputLayout:SfTextInputLayout>
+                            <inputLayout:SfTextInputLayout Grid.Row="1" Grid.Column="1" Hint="Max. Salary" ContainerType="Outlined" InputViewPadding="12">
+                                <numericBox:SfNumericTextBox Value="{Binding SalaryTo}" FormatString="n0"/>
+                            </inputLayout:SfTextInputLayout>
+
+                            <range:SfRangeSlider Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" x:Name="sfRangeSlider2" HorizontalOptions="Fill" VerticalOptions="Center" HeightRequest="40"
+                                             Margin="0,0,0,0"
+                                             Minimum="0" Maximum="200000" RangeStart="{Binding SalaryFrom}" RangeEnd="{Binding SalaryTo}" Orientation="Horizontal" 
+                                             TrackColor="{DynamicResource Green}" TrackSelectionColor="{DynamicResource Green-Theme}" KnobColor="{DynamicResource Green-Theme}"
+                                             LabelColor="{DynamicResource Green-Theme}" LabelFormat="{}{0:N0}" 
+                                             TickFrequency="0" TickPlacement="None"
+                                             SnapsTo ="StepValues" StepFrequency="500" ShowValueLabel="True" ShowRange="True" 
+                                             ToolTipPlacement="TopLeft" ToolTipTextColor="{DynamicResource Green-Theme}" ToolTipPrecision="0" 
+                                             ShowCustomLabel="true" ValuePlacement="BottomRight" BackgroundColor="Transparent"
+                                             >
+                            </range:SfRangeSlider>
+                        </Grid>
+                    </Frame>
+
+                    <Frame Grid.Row="8" Grid.ColumnSpan="2" BorderColor="{DynamicResource Gray-400}" CornerRadius="2" HasShadow="False" HorizontalOptions="Fill" VerticalOptions="Start"
+                       Padding="8" Margin="0,0,0,10">
+                        <StackLayout>
+                            <StackLayout.Resources>
+                                <Style TargetType="buttons:SfButton">
+                                    <Setter Property="CornerRadius" Value="10" />
+                                </Style>
+                            </StackLayout.Resources>
+                            <Label Grid.Row="0" Text="Job Type" Margin="0,0,0,0" HeightRequest="18"/>
+                            <buttons:SfChipGroup x:Name="chipGroup" Grid.Row="1" Grid.Column="0"  Type="Filter" Margin="0,0,0,8"
+	                                            ChipPadding="8,8,0,0" 
+                                                 ItemsSource="{Binding BindingContext.EmploymentTypes, Source={x:Reference jobSearchFilterPage}}" 
+                                                 SelectedItems="{Binding BindingContext.SelectedEmploymentTypes, Source={x:Reference jobSearchFilterPage}}" 
+                                                 SelectedChipBackgroundColor="{DynamicResource PrimaryColor}"
+                                                 SelectedChipTextColor="White"
+	                                             SelectionIndicatorColor="White"
+                                                 ChipTextColor="{DynamicResource Gray-900}"
+	                                            DisplayMemberPath="EmploymentType" ChipBorderWidth="0" >
+                                <buttons:SfChipGroup.ItemTemplate>
+                                    <DataTemplate>
+                                        <buttons:SfChip  Text="{Binding EmploymentType}"
+                                         InputTransparent="True"
+                                         BorderColor="Transparent" 
+                                         BorderWidth="0"
+                                         TextColor="{Binding Source={x:Reference chipGroup},Path=ChipTextColor}"                                          
+                                         BackgroundColor="Transparent" 
+                                         VerticalOptions="Start"  Padding="4,8" Margin="0,-5,0,-5" 
+                                                   > 
+                                            
+                                        </buttons:SfChip>
+                                    </DataTemplate>
+                                </buttons:SfChipGroup.ItemTemplate>
+                                <buttons:SfChipGroup.ChipLayout>
+                                    <FlexLayout 
+			                            HorizontalOptions="Start" 
+			                            VerticalOptions="Start" 
+			                            Direction="Row" 
+			                            Wrap="Wrap" 
+			                            JustifyContent="Start" 
+			                            AlignContent="Start" 
+			                            AlignItems="Start"/>
+                                </buttons:SfChipGroup.ChipLayout>
+                            </buttons:SfChipGroup>
+
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+            </ScrollView>
+
+            <BoxView Grid.Row="2" HeightRequest="1" BackgroundColor="{DynamicResource Gray-300}" Margin="0,0,0,0"/>
+
+            <Grid Grid.Row="3" RowSpacing="0" BackgroundColor="{DynamicResource Gray-White}" Padding="0,0,0,6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="0.5*" />
+                </Grid.ColumnDefinitions>
+                <buttons:SfButton x:Name="BtnCancel" Grid.Row="0" Grid.Column="0" Text="Cancel" Style="{StaticResource SquareButtonStyle}" Clicked="BtnCancel_Clicked"
+                                  WidthRequest="150"  HeightRequest="40" HorizontalOptions="End" VerticalOptions="Center"/>
+                <buttons:SfButton x:Name="BtnApply" Grid.Row="0" Grid.Column="1" Text="Apply" HorizontalOptions="Start" VerticalOptions="Center"
+                                  Command="{Binding BindingContext.ApplyFiltersButtonCommand, Source={x:Reference jobSearchFilterPage}}" CommandParameter="{Binding}" 
+                                  Style="{StaticResource SfGradientButtonStyle}" CornerRadius="1" WidthRequest="150"  HeightRequest="40"/>
+            </Grid>
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
+
+
+<!--<range:SfRangeSlider.CustomLabels>
+    <Local:ObservableCollectionList>
+        <range:Items Label="Min" Value="0"/>
+        <range:Items Label="Mid" Value="50"/>
+        <range:Items Label="Max" Value="100"/>
+    </Local:ObservableCollectionList>
+</range:SfRangeSlider.CustomLabels>-->

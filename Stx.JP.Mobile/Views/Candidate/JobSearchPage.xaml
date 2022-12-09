@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Stx.JP.Mobile.Views.Candidate.JobSearchPage"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:controls="clr-namespace:Stx.JP.Mobile.Controls"
+    xmlns:converter="clr-namespace:Stx.JP.Mobile.Converters"
+    xmlns:template="clr-namespace:Stx.JP.Mobile.Views.Candidate.Templates"
+    xmlns:viewModel="clr-namespace:Stx.JP.Mobile.ViewModels.Candidate" 
+    xmlns:commonBehavior="clr-namespace:Stx.JP.Mobile.Behaviors"
+    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:pulltoRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms" xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+             x:Name="jobSearchListPage"
+    BackgroundColor="{DynamicResource Gray-White}"  
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <converter:BooleanToIconStringConverter x:Key="booleanToIconStringConv" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewModel:JobSearchViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--Header-->
+            <Grid Padding="0" Grid.Row="0" HeightRequest="50" HorizontalOptions="FillAndExpand" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.6*" />
+                    <ColumnDefinition Width="0.4*" />
+                </Grid.ColumnDefinitions>
+
+                <gradient:SfGradientView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                    <gradient:SfGradientView.BackgroundBrush>
+                        <gradient:SfLinearGradientBrush>
+                            <gradient:SfLinearGradientBrush.GradientStops>
+                                <gradient:SfGradientStop Color="{StaticResource PrimaryColor}" Offset="0.0" />
+                                <gradient:SfGradientStop Color="{StaticResource PrimaryDarkenColor}" Offset="1.0" />
+                            </gradient:SfLinearGradientBrush.GradientStops>
+                        </gradient:SfLinearGradientBrush>
+                    </gradient:SfGradientView.BackgroundBrush>
+                </gradient:SfGradientView>
+                
+                <!--  Back button command  -->
+                <!--<buttons:SfButton x:Name="backButton" Command="{Binding BackButtonCommand}" CommandParameter="{x:Reference backButton}" HorizontalOptions="Start"
+                        CornerRadius="4" TextColor="{DynamicResource Gray-300}" Style="{StaticResource IconButtonStyle}" 
+                        Text="{StaticResource Back}" />-->
+                
+                <!--  Page Title  -->
+                <Label Grid.Row="0" Grid.Column="0" Text="Job Search" Margin="16,0" HeightRequest="24" HorizontalOptions="Start" LineHeight="1.25" 
+                           FontSize="16" FontFamily="{StaticResource Montserrat-Medium}" TextColor="{DynamicResource Gray-300}"
+                           VerticalOptions="Center" VerticalTextAlignment="Center" />
+
+                <!--  Filter Button  -->
+                <buttons:SfButton x:Name="SearchButton" Grid.Row="0" Grid.Column="1" Margin="0" Padding="4,0,14,0" Command ="{Binding FilterButtonCommand}" 
+                                  Style="{StaticResource NavigationBarButtonStyle}" HorizontalOptions="EndAndExpand" WidthRequest="100" TextColor="{DynamicResource Gray-300}"  >
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center" Spacing="0" HorizontalOptions="End">
+                        <Label Text="Filter" TextColor="{DynamicResource Gray-300}" FontSize="14" Margin="0,0,4,0" Padding="0" />
+                        <Label Text="{Binding JobFilters.IsFilterApplied, FallbackValue={StaticResource Filter}, Converter={StaticResource booleanToIconStringConv}, ConverterParameter=3}"
+                               FontFamily="{StaticResource FontIcons}" TextColor="{DynamicResource Gray-300}" FontSize="18" Margin="0" Padding="0,0,2,0"/>
+                    </StackLayout>                 
+                </buttons:SfButton>
+                
+                <!--<StackLayout  x:Name="Title" HorizontalOptions="FillAndExpand" IsVisible="True" Orientation="Horizontal" 
+                              Spacing="0" VerticalOptions="FillAndExpand">
+                    --><!--  Back button command  --><!--
+                    <buttons:SfButton x:Name="backButton" Command="{Binding BackButtonCommand}" CommandParameter="{x:Reference backButton}"
+                        CornerRadius="4" TextColor="{DynamicResource Gray-300}" Style="{StaticResource IconButtonStyle}" 
+                        Text="{StaticResource Back}" />
+
+                    --><!--  Page Title  --><!--
+                    <Label Margin="16,0" HeightRequest="24" HorizontalOptions="CenterAndExpand"
+                           LineHeight="1.25" Text="Jobs Found" 
+                           FontSize="16" FontFamily="{StaticResource Montserrat-Medium}" TextColor="{DynamicResource Gray-300}"
+                           VerticalOptions="Center" VerticalTextAlignment="Center" />
+
+                </StackLayout>-->
+
+            </Grid>
+
+            <!--  Separator  -->
+            <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}" />
+
+            <pulltoRefresh:SfPullToRefresh 
+                x:Name="pullToRefresh"
+                Grid.Row="1" Margin="0,0,0,0"
+                PullingThreshold="150"
+                RefreshContentHeight="30"
+                RefreshContentThreshold="4"
+                RefreshContentWidth="30"
+                ProgressBackgroundColor="{DynamicResource Gray-200}" 
+                ProgressStrokeColor="{DynamicResource PrimaryColor}"
+                TransitionMode="SlideOnTop" 
+                IsRefreshing="{Binding IsRefreshing}" 
+                RefreshCommand="{Binding RefreshListCommand}"
+                                        >
+                <pulltoRefresh:SfPullToRefresh.PullableContent>
+                    <!--  Job List -->
+                    <listView:SfListView x:Name="ListViewList" 
+                        AutoFitMode="Height" IsVisible="true"
+                        HorizontalOptions="FillAndExpand"
+                        ItemsSource="{Binding JobOrders}" 
+                        TapCommand="{Binding ListItemSelectedCommand}"  
+                        Padding="0" 
+                        SelectionBackgroundColor="{DynamicResource Gray-200}" BackgroundColor="{DynamicResource Gray-White}"
+                                         >
+                        <!--Style="{StaticResource SfListViewStyle}"-->
+
+                        <!--<listView:SfListView.Behaviors>
+                            <commonBehavior:SfListViewTapBehavior Command="{Binding Path=BindingContext.ListItemSelectedCommand, Source={x:Reference jobSearchListPage}}" />
+                        </listView:SfListView.Behaviors>-->
+                            <!--<local:EventToCommandBehavior EventName="SelectionChanging" Command="{Binding SelectedItem}" Converter="{StaticResource EventArgs}"/>-->
+
+                        <listView:SfListView.ItemTemplate>
+                            <DataTemplate>
+                                <template:JobSearchListTemplate ParentBindingContext="{Binding Path=BindingContext, Source={x:Reference jobSearchListPage}}" />
+                            </DataTemplate>
+                        </listView:SfListView.ItemTemplate>
+
+                    </listView:SfListView>
+                </pulltoRefresh:SfPullToRefresh.PullableContent>
+            </pulltoRefresh:SfPullToRefresh>
+
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

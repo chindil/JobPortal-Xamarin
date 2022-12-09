@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        x:Class="Stx.JP.Mobile.Views.Profile.ProfileMenuPage"
+        xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+        xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+        xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+        xmlns:local="clr-namespace:Stx.JP.Mobile.Views.Candidate"
+        xmlns:viewModel="clr-namespace:Stx.JP.Mobile.ViewModels.Profile" 
+        xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+        xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms" 
+        xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms" 
+        xmlns:controls="clr-namespace:Stx.JP.Mobile.Controls"
+        BackgroundColor="{DynamicResource Gray-100}"
+        NavigationPage.HasNavigationBar="False" x:Name="profileMenuPage">
+
+    <ContentPage.BindingContext>
+        <viewModel:ProfileMenuViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid Margin="0,0,0,0" Padding="0,0,0,20" RowSpacing="0" ColumnSpacing="0" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <gradient:SfGradientView Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                    <gradient:SfGradientView.BackgroundBrush>
+                        <gradient:SfLinearGradientBrush>
+                            <gradient:SfLinearGradientBrush.GradientStops>
+                                <gradient:SfGradientStop Color="{StaticResource PrimaryColor}" Offset="0.0" />
+                                <gradient:SfGradientStop Color="{StaticResource PrimaryDarkenColor}" Offset="1.0" />
+                            </gradient:SfLinearGradientBrush.GradientStops>
+                        </gradient:SfLinearGradientBrush>
+                    </gradient:SfGradientView.BackgroundBrush>
+                </gradient:SfGradientView>
+
+                <border:SfBorder Grid.Row="0" Grid.Column="0" Margin="16,16,0,24" BackgroundColor="{DynamicResource Gray-900}"
+                    BorderColor="White" BorderWidth="2" CornerRadius="40" HasShadow="True" HeightRequest="80"
+                    HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" WidthRequest="80">
+
+                    <!--  Profile image  -->
+                    <sfavatar:SfAvatarView 
+                        ContentType="AvatarCharacter" AvatarCharacter="Avatar8"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"   
+                           HeightRequest="80"
+                           CornerRadius="25"
+                           WidthRequest="80" >
+                        <sfavatar:SfAvatarView.ImageSource>
+                            <UriImageSource Uri="{Binding ProfileImage}" CacheValidity="14"  CachingEnabled="true"/>
+                        </sfavatar:SfAvatarView.ImageSource>
+                    </sfavatar:SfAvatarView>
+                </border:SfBorder>
+
+                <StackLayout Grid.Row="0" Grid.Column="1" Padding="0,16,0,10" Spacing="0" Margin="16,0,2,16" >
+
+                    <!--  Profile name  -->
+                    <Label FontAttributes="Bold" FontFamily="{StaticResource Montserrat-SemiBold}" TextColor="{DynamicResource Gray-200}"
+                        FontSize="16" HorizontalOptions="StartAndExpand" LineHeight="{OnPlatform Default=-1, Android=1.5}"
+                        Text="{Binding ProfileName}"  />
+
+                    <StackLayout Margin="0,8,0,16" HorizontalOptions="StartAndExpand" Orientation="Vertical" Spacing="5">
+                        <!--  Designation label  -->
+                        <Label Style="{StaticResource ContentLabelStyle}" Text="{Binding CurrentJobTitle}"  />
+
+                        <!--  State and country label  -->
+                        <Label Style="{StaticResource ContentLabelStyle}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding City}" />
+                                    <Span Text=" " />
+                                    <Span Text="{Binding CountryName}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </StackLayout>
+
+                    <Grid ColumnSpacing="32" RowSpacing="0" IsVisible="false">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <!--  Applied count label  -->
+                        <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource FollowerCountLabelStyle}" Text="{Binding PostsCount}" />
+                        <!--  Applied title label  -->
+                        <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource FollowerTitleLabelStyle}" Text="Applied" />
+
+                        <!--  Interviews count label  -->
+                        <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource FollowerCountLabelStyle}" Text="{Binding FollowersCount}" />
+                        <!--  Interviews title label  -->
+                        <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource FollowerTitleLabelStyle}" Text="Interviews" />
+
+                        <!--  Offers count label  -->
+                        <Label Grid.Row="0" Grid.Column="2" Style="{StaticResource FollowerCountLabelStyle}" Text="{Binding FollowingCount}" />
+                        <!--  Offers title label  -->
+                        <Label Grid.Row="1" Grid.Column="2" Style="{StaticResource FollowerTitleLabelStyle}" Text="Offers" />
+                    </Grid>
+                </StackLayout>
+
+                <syncfusion:SfButton x:Name="BtnEditProfile" Grid.Row="0" Grid.Column="1" Text="{StaticResource Edit}" FontFamily="{StaticResource FontIcons}"  
+                                     Command="{Binding BindingContext.EditProfileButtonClickCommand, Source={x:Reference profileMenuPage}}" CommandParameter="PROF"
+                                     HorizontalOptions="End" VerticalOptions="Start" BackgroundColor="Transparent" WidthRequest="50" HeightRequest="50"
+                                     TextColor="{DynamicResource Gray-100}" FontSize="18" CornerRadius="0" Padding="0" />
+                
+                <BoxView Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource SeparatorStyle}" />
+
+                <!--Candidate's Other Menus -->
+                <Grid Grid.Row="2" Grid.ColumnSpan="2" Margin="0,16,0,0" RowSpacing="0" ColumnSpacing="0" BackgroundColor="{DynamicResource Gray-White}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>                    
+     
+                    <!--  Update Resume  -->
+                    <controls:TapAnimationGrid Grid.Row="0" BackgroundColor="{DynamicResource Gray-White}" ColumnSpacing="0" Margin="0,8,0,8"
+                        Command="{Binding UpdateResumeMenuCommand}" RowSpacing="0" Tapped="False"  >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>                        
+
+                        <Label Grid.Column="0" Style="{StaticResource CommonProfileIconLabelStyle}" Text="{StaticResource Resume}" />
+                        <Label Grid.Column="1" Style="{StaticResource CommonProfileLabelStyle}" Text="Update Resume" />
+                        <Label Grid.Column="2" HorizontalOptions="End" Style="{StaticResource CommonProfileIconLabelStyle}" Text="{StaticResource Next}"/>
+                    </controls:TapAnimationGrid>
+                    
+                    <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}" />
+
+                    <!--  Dark Mode  -->
+                    <controls:TapAnimationGrid Grid.Row="2" BackgroundColor="{DynamicResource Gray-White}" ColumnSpacing="0" Margin="0,4,0,4"
+                        RowSpacing="0" Tapped="False" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <Label Grid.Column="0" Style="{StaticResource CommonProfileIconLabelStyle}" Text="{StaticResource Darkmode}" />
+                        <Label Grid.Column="1" Style="{StaticResource CommonProfileLabelStyle}" Text="Dark Mode" />
+                        <syncfusion:SfSwitch Grid.Column="2" VisualType="Cupertino" Margin="0,0,8,0" Padding="0" HorizontalOptions="End"/>
+                    </controls:TapAnimationGrid>
+
+                    <BoxView Grid.Row="4" Style="{StaticResource SeparatorStyle}" />
+                </Grid>
+
+                <!--Settings Menus-->
+                <Grid Grid.Row="4" Grid.ColumnSpan="2" Margin="0,28,0,0" Padding="0,0,0,8" RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start" BackgroundColor="{DynamicResource Gray-White}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                      <!--Notifications-->
+                    <controls:TapAnimationGrid Grid.Row="0" BackgroundColor="{DynamicResource Gray-White}" ColumnSpacing="0" RowSpacing="0" Tapped="False" 
+                                               Command="{Binding SettingsMenuClickCommand}" CommandParameter="NOTIF" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <BoxView Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,0,10" HeightRequest="1"/>
+                        <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource CommonProfileIconLabelStyle}" Text="{StaticResource Notification}" />
+                        <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource CommonProfileLabelStyle}" Text="Notifications" />
+                        <Label Grid.Row="1" Grid.Column="2" HorizontalOptions="End" Style="{StaticResource CommonProfileIconLabelStyle}" Text="{StaticResource Next}"/>
+                    </controls:TapAnimationGrid>
+
+                    <!--Activities-->
+                    <controls:TapAnimationGrid Grid.Row="2" BackgroundColor="{DynamicResource Gray-White}" ColumnSpacing="0" RowSpacing="0" Tapped="False" 
+                                               Command="{Binding SettingsMenuClickCommand}" CommandParameter="ACTIV">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <BoxView Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource SettingsSeparatorStyle}" />
+                        <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource CommonProfileIconLabelStyle}" Text="{StaticResource Activity}" />
+                        <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource CommonProfileLabelStyle}" Text="Activities" />
+                        <Label Grid.Row="1" Grid.Column="2" HorizontalOptions="End" Style="{StaticResource CommonProfileIconLabelStyle}" Text="{StaticResource Next}"/>
+                    </controls:TapAnimationGrid>
+                    
+                    <!--Preferences-->
+                    <controls:TapAnimationGrid Grid.Row="3" BackgroundColor="{DynamicResource Gray-White}" ColumnSpacing="0" RowSpacing="0" Tapped="False" 
+                                               Command="{Binding SettingsMenuClickCommand}" CommandParameter="PREFE">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <BoxView Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource SettingsSeparatorStyle}" />
+                        <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource CommonProfileIconLabelStyle}" Text="{StaticResource Preference}" />
+                        <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource CommonProfileLabelStyle}" Text="Preferences" />
+                        <Label Grid.Row="1" Grid.Column="2" HorizontalOptions="End" Style="{StaticResource CommonProfileIconLabelStyle}" Text="{StaticResource Next}"/>
+                    </controls:TapAnimationGrid>                   
+
+                      <!--Help & Support-->
+                    <controls:TapAnimationGrid Grid.Row="4" BackgroundColor="{DynamicResource Gray-White}" ColumnSpacing="0" RowSpacing="0" Tapped="False" 
+                                               Command="{Binding SettingsMenuClickCommand}" CommandParameter="HELP">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <BoxView Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource SettingsSeparatorStyle}" />
+                        <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource CommonProfileIconLabelStyle}" Text="{StaticResource Help}" />
+                        <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource CommonProfileLabelStyle}" Text="Help &amp; Support" />
+                        <Label Grid.Row="1" Grid.Column="2" HorizontalOptions="End" Style="{StaticResource CommonProfileIconLabelStyle}" Text="{StaticResource Next}"/>
+                    </controls:TapAnimationGrid>                    
+                </Grid>
+
+                <syncfusion:SfButton Grid.Row="6" Grid.ColumnSpan="2" HorizontalOptions="Center" VerticalOptions="Start" 
+                                     Text="Log Out" FontSize="16" Padding="16,10" Margin="0,30,0,4" BorderWidth="1" WidthRequest="200" 
+                                     Style="{StaticResource GradientButtonStyle}"/>
+
+                <StackLayout Grid.Row="7" Grid.ColumnSpan="2" Margin="0,8,0,0"  >
+                    <Label Text="1.0.0v" HorizontalTextAlignment="Center" HorizontalOptions="Fill" VerticalOptions="Start" Margin="0" TextColor="{DynamicResource Gray-500}"/>
+                </StackLayout>
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+    
+</ContentPage>

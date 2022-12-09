@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid
+    x:Class="Stx.JP.Mobile.Views.Profile.Templates.SkillTemplate"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:controls="clr-namespace:Stx.JP.Mobile.Controls"         
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:converter="clr-namespace:Stx.JP.Mobile.Converters" 
+    xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms"
+    x:Name="articleListTemplate">
+
+    <Grid.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <!--<ResourceDictionary>
+            <ResourceDictionary Source="./Styles.xaml"/>
+        </ResourceDictionary>-->
+            <converter:ShortToSkillProficiencyConverter x:Key="ShortToSkillProficiencyConv" />
+        </ResourceDictionary>
+    </Grid.Resources>
+
+    <Grid x:Name="GridEntryExpr" ColumnSpacing="10" RowSpacing="2" Padding="16,0,8,0" BackgroundColor="{DynamicResource Gray-White}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding SkillName}" FontAttributes="Bold" Style="{StaticResource ResumeEntrySubHeaderLabelStyle}" Margin="0,0,0,0" />
+        
+        <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Proficiency, Converter={StaticResource ShortToSkillProficiencyConv}}" 
+               HorizontalOptions="End" Style="{StaticResource ResumeEntrySubHeaderLabelStyle}" Margin="0,0,0,0" TextColor="{DynamicResource Gray-600}"  />
+        <progressBar:SfLinearProgressBar Grid.Row="2" Grid.Column="1" Progress="{Binding Proficiency}" SegmentCount="5" GapWidth="2" Minimum="0" Maximum="5" Margin="0,0,0,6">
+            <progressBar:SfLinearProgressBar.RangeColors>
+                <progressBar:RangeColorCollection>
+                    <progressBar:RangeColor Color="#C0B100" Start="0" End="1"/>
+                    <progressBar:RangeColor Color="#CE8C00" Start="1.1" End="2"/>
+                    <progressBar:RangeColor Color="#DC6101" Start="2.1" End="3"/>
+                    <progressBar:RangeColor Color="#DB2F01" Start="3.1" End="4"/>
+                    <progressBar:RangeColor Color="#B80000" Start="4.1" End="5"/>
+                </progressBar:RangeColorCollection>
+            </progressBar:SfLinearProgressBar.RangeColors>
+        </progressBar:SfLinearProgressBar>
+        <!--<Label Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding DateStart}" Style="{StaticResource ResumeEntryPeriodLabelStyle}" />-->
+        <!--<Label Grid.Row="4" Grid.ColumnSpan="2" Text="{Binding Comments}"  Style="{StaticResource ResumeEntryDetailLabelStyle}" MaxLines="3"  />-->
+
+    </Grid>
+
+</Grid>

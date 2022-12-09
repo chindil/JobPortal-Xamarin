@@ -1,0 +1,208 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Converters\ErrorValidationColorConverter.cs" />
+    <Compile Remove="Models\TEST\JobEntry.cs" />
+    <Compile Remove="ViewModels\Profile\ResumeItem.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Data\navigation.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Data\navigation.json" />
+  </ItemGroup>
+
+<ItemGroup>
+<PackageReference Include="Syncfusion.Xamarin.DataSource" Version="19.1.0.54" />
+<PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox" Version="19.1.0.54" />
+<PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="19.1.0.54" />
+<PackageReference Include="Syncfusion.Xamarin.SfProgressBar" Version="19.1.0.54" />
+<PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh" Version="19.1.0.54" />
+<PackageReference Include="Syncfusion.Xamarin.SfRangeSlider" Version="19.1.0.54" />
+<PackageReference Include="Syncfusion.Xamarin.SfRating" Version="19.1.0.54" />
+<PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+<PackageReference Include="Syncfusion.Xamarin.SfListView" Version="19.1.0.54" />
+<PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="19.1.0.54" />
+<PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.4.0.30" />
+<PackageReference Include="Syncfusion.Xamarin.Buttons" Version="19.1.0.54" />
+<PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="19.1.0.54" />
+<PackageReference Include="Syncfusion.Xamarin.Core" Version="19.1.0.54" />
+<PackageReference Include="Syncfusion.Xamarin.SfAutoComplete" Version="19.1.0.54" />
+<PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="19.1.0.54" />
+<PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.1" />
+<PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ItemGroup>
+
+  <ItemGroup>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
+      <DependentUpon>*.xaml</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="MainPage.xaml.cs">
+      <DependentUpon>*.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Candidate\JobSearchPage.xaml.cs">
+      <DependentUpon>JobSearchPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Profile\Styles.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Profile\Templates\ResumeItemListTemplate.xaml.cs">
+      <DependentUpon>ResumeItemListTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Candidate\Templates\JobSearchListTemplate.xaml.cs">
+      <DependentUpon>JobSearchListTemplate.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Styles.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Themes\LightTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Candidate\JobDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Candidate\JobSearchFilterPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Candidate\JobSearchPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Candidate\JobSubmitPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Candidate\MyNotificationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Candidate\MySavedDataPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Common\AcknowledgementPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\CertificateEditPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\EducationEditPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\ExperienceEditPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\ProfileEditPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\ProfileMenuPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Navigation\AlbumPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Navigation\BottomNavigationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Navigation\PhotosPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Navigation\SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Navigation\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Candidate\Styles.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\ResumePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\SkillEditPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\Templates\CertificateTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\Templates\EducationTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\Templates\ExperienceTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\Templates\ResumeItemListTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\Templates\SkillTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Candidate\Templates\JobSearchListTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Settings\PreferencePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Settings\SupportPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\TEST\" />
+    <Folder Include="ViewModels\Settings\" />
+    <Folder Include="Views\Templates\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Stx.DataServices.Hrm\Stx.DataServices.Hrm.csproj" />
+    <ProjectReference Include="..\..\Stx.Shared\Stx.Shared.csproj" />
+  </ItemGroup>
+</Project>

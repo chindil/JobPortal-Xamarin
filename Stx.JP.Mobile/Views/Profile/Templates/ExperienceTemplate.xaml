@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid
+    x:Class="Stx.JP.Mobile.Views.Profile.Templates.ExperienceTemplate"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:controls="clr-namespace:Stx.JP.Mobile.Controls"         
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:Stx.JP.Mobile.Behaviors"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:converter="clr-namespace:Stx.JP.Mobile.Converters"
+    x:Name="articleListTemplate">
+
+    <Grid.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <converter:StringToBooleanConverter x:Key="stringToBooleanConv" />
+        </ResourceDictionary>
+    </Grid.Resources>
+
+    <Grid x:Name="GridEntryExpr" ColumnSpacing="10" RowSpacing="2" Padding="16,0,8,0" BackgroundColor="{DynamicResource Gray-White}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="48" />
+        </Grid.ColumnDefinitions> 
+
+        <BoxView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,10" Style="{StaticResource SeparatorStyle}" />
+        <!--  Header -->
+        <Button Grid.Row="1" Grid.Column="1" Text="{StaticResource Edit}" Grid.RowSpan="3" Style="{StaticResource EditResumeEntryIconButtonStyle}"  
+                BackgroundColor="{Binding Path=BackgroundColor, Source={x:Reference GridEntryExpr}}"
+                Command="{Binding ParentBindingContext.EditSectionButtonCommand, Source={x:Reference articleListTemplate}}"
+                CommandParameter="{Binding}"/>
+        
+        <Label Grid.Row="1" Text="{Binding Title}" FontAttributes="Bold" Style="{StaticResource ResumeEntrySubHeaderLabelStyle}"  Margin="0" />
+        <Label Grid.Row="2" Text="{Binding CompanyName}" Style="{StaticResource ResumeEntrySubHeaderLabelStyle}" TextColor="{DynamicResource Gray-700}" Margin="0" />
+        <StackLayout Grid.Row="3" Grid.ColumnSpan="2" Margin="0" Orientation="Horizontal" HorizontalOptions="Fill" >
+            <Label Style="{StaticResource ResumeEntryPeriodLabelStyle}" Margin="0" Text="{Binding DateStart, StringFormat='{0:MMM yyyy}'}" 
+                   IsVisible="{Binding DateStart, Converter={StaticResource stringToBooleanConv}}"/>
+            <Label Style="{StaticResource ResumeEntryPeriodLabelStyle}" Margin="0" Text="{Binding DateEnd, StringFormat='{0:MMM yyyy}'}" 
+                   IsVisible="{Binding DateEnd, Converter={StaticResource stringToBooleanConv}}"/>
+        </StackLayout> 
+        <!--<Label Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource ResumeEntryPeriodLabelStyle}" Margin="0">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="{Binding DateStart, StringFormat='{0:MMM yyyy}'}" />
+                    <Span Text=" - " />
+                    <Span Text="{Binding DateEnd, StringFormat='{0:MMM yyyy}'}" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>-->
+        <Label Grid.Row="4" Grid.ColumnSpan="2" Text="{Binding Description}" Style="{StaticResource ResumeEntryDetailLabelStyle}" MaxLines="3" Margin="0" Padding="0"
+                IsVisible="{Binding Description, Converter={StaticResource stringToBooleanConv}}" />
+
+    </Grid>
+
+</Grid>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        x:Class="Stx.JP.Mobile.Styles"
+        xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+        xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+        xmlns:control="clr-namespace:Stx.JP.Mobile.Controls"
+        xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+        xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+                    >
+
+    <x:String x:Key="Home">&#xe7e9;</x:String>
+    <x:String x:Key="Menu">&#xe715;</x:String>
+    <x:String x:Key="Share">&#xe842;</x:String>
+    <x:String x:Key="Favourite">&#xe7e6;</x:String>
+    <x:String x:Key="Briefcase1">&#xe708;</x:String>
+    <x:String x:Key="Search">&#xe8f0;</x:String>
+    <x:String x:Key="Notification">&#xe875;</x:String>
+    <x:String x:Key="UserAvatar">&#xe8f5;</x:String>
+
+    <Style TargetType="NavigationPage">
+        <Setter Property="BarBackgroundColor" Value="{DynamicResource PrimaryColor}"/>
+    </Style>
+
+</ResourceDictionary>

@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" 
+             xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
+             xmlns:pickers="clr-namespace:Syncfusion.XForms.Pickers;assembly=Syncfusion.SfPicker.XForms"
+             x:Class="Stx.JP.Mobile.Views.Profile.EducationEditPage"
+             x:Name="educEditPage"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <!--<converter:BooleanToStringConverter x:Key="boolToStringConverter" />-->
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <!-- Title Bar View -->
+            <Grid RowSpacing="0" ColumnSpacing="0" HeightRequest="50" >
+                <syncfusion:SfButton x:Name="BtnBack" Margin="8,0" Text="{StaticResource Back}" CornerRadius="4" 
+                                         Style="{StaticResource IconButtonStyle}" HorizontalOptions="Start" 
+                                         VerticalOptions="Center" Clicked="BtnCancel_Clicked"/>
+                <Label Text="{Binding PageHeader}" TextColor="{DynamicResource PrimaryColor}" Margin="0,0,10,0"
+                               FontAttributes="Bold" FontSize="18" HorizontalOptions="Center" 
+                               LineHeight="{OnPlatform Android=1.5, Default=-1}"
+                               VerticalOptions="Center" />
+                <syncfusion:SfButton x:Name="BtnDelete" Margin="8,0" Text="{StaticResource Delete}" CornerRadius="4" 
+                                     Style="{StaticResource IconButtonStyle}" HorizontalOptions="End" VerticalOptions="Center" 
+                                     TextColor="{DynamicResource Red}"                                      
+                                     Command="{Binding BindingContext.RemoveRecordButtonCommand, Source={x:Reference educEditPage}}" CommandParameter="{Binding}" 
+                                     />
+            </Grid>
+
+            <!-- Seperator -->
+            <BoxView HeightRequest="1" BackgroundColor="{DynamicResource Gray-300}" Margin="0,0,0,0"/>
+
+            <ScrollView>
+
+                <Grid x:Name="GridEntryExpr" ColumnSpacing="10" RowSpacing="2" Margin="16,4,16,8" BackgroundColor="{DynamicResource Gray-White}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <inputLayout:SfTextInputLayout Grid.Row="2" Grid.ColumnSpan="2" Hint="Qualification Name" ContainerType="Outlined" Margin="0" >
+                        <Entry Text="{Binding BaseEntry.QualificationName, Mode=TwoWay}" />
+                    </inputLayout:SfTextInputLayout>
+
+                    <inputLayout:SfTextInputLayout Grid.Row="3" Grid.ColumnSpan="2" Hint="Institute Name" ContainerType="Outlined" Margin="0" >
+                        <Entry Text="{Binding BaseEntry.Institute, Mode=TwoWay}" />
+                    </inputLayout:SfTextInputLayout>
+
+                    <inputLayout:SfTextInputLayout Grid.Row="4" Grid.ColumnSpan="2" Hint="Country" ContainerType="Outlined" Margin="0" >
+                        <autocomplete:SfAutoComplete Text="{Binding BaseEntry.Country, Mode=TwoWay}" AutoCompleteSource="{Binding Countries}" DataSource="{Binding Countries}" 
+                                                     DisplayMemberPath="Name" SelectedValuePath="CountryID" SelectedValue="{Binding BaseEntry.Country, Mode=TwoWay}"
+                                                     Style="{DynamicResource CountryAutoCompleteStyle}" />
+                    </inputLayout:SfTextInputLayout>
+
+                    <inputLayout:SfTextInputLayout Grid.Row="5" Grid.ColumnSpan="2" Hint="Graduated Date" ContainerType="Outlined" Margin="0" >
+                        <DatePicker x:Name="datepicker" Date="{Binding BaseEntry.DateGraduated, Mode=TwoWay}"/>
+                    </inputLayout:SfTextInputLayout>
+
+                    <!--<inputLayout:SfTextInputLayout Grid.Row="7" Grid.ColumnSpan="2" Hint="Description" ContainerType="Outlined"  >
+                        <ScrollView Grid.Row="9" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Always" HeightRequest="200" Margin="4" Padding="2">
+                            <Editor Text="{Binding BaseEntry.Description, Mode=TwoWay}" Margin="4" />
+                        </ScrollView>
+                    </inputLayout:SfTextInputLayout>-->
+
+                    <!--<syncfusion:SfCheckBox Grid.Row="8" Text="I'm currently work here" FontSize="16"/>-->
+
+                    <!--<combobox:SfComboBox   HeightRequest="40" x:Name="comboBox" DataSource="{Binding Countries}" DisplayMemberPath="Name" 
+                                          NoResultsFoundText="Country not in the list" IsEditableMode="true" SuggestionBoxPlacement="Top"/>-->
+
+
+                    <StackLayout Grid.Row="10" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalOptions="End" Margin="0,16,0,0">
+                        <syncfusion:SfButton x:Name="BtnCancel" Text="Cancel" Style="{StaticResource SquareButtonStyle}" Clicked="BtnCancel_Clicked"
+                                      WidthRequest="150" HeightRequest="45" HorizontalOptions="End"/>
+                        <syncfusion:SfButton x:Name="BtnApply" Text="Save" 
+                                      Command="{Binding BindingContext.ApplyButtonCommand, Source={x:Reference educEditPage}}" CommandParameter="{Binding}" 
+                                      CornerRadius="1" WidthRequest="150" HorizontalOptions="End" HeightRequest="45"/>
+                        <!--Style="{StaticResource SfGradientButtonStyle}"-->
+                    </StackLayout>
+
+                </Grid>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

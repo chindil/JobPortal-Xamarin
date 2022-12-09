@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A1E4446A-5946-416C-93AD-DA6A78FD3B7C}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Stx.JP.Mobile.Android</RootNamespace>
+    <AssemblyName>Stx.JP.Mobile.Android</AssemblyName>
+    <TargetFrameworkVersion>v10.0</TargetFrameworkVersion>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <BundleAssemblies>false</BundleAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidManagedSymbols>true</AndroidManagedSymbols>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Stx.JP.Mobile\Stx.JP.Mobile.csproj">
+      <Project>{2549C2E8-38C9-4C78-BBF2-EC15416A2E9A}</Project>
+      <Name>Stx.JP.Mobile</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Android" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="Resources\Resource.Designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\UIFontIcons.ttf" />
+    <AndroidAsset Include="Assets\Montserrat-Bold.ttf" />
+    <AndroidAsset Include="Assets\Montserrat-Medium.ttf" />
+    <AndroidAsset Include="Assets\Montserrat-Regular.ttf" />
+    <AndroidAsset Include="Assets\Montserrat-SemiBold.ttf" />
+    <AndroidAsset Include="Assets\StxIcons.ttf" />
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\AndroidManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Syncfusion.Xamarin.DataSource">
+      <Version>19.1.0.54</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox">
+      <Version>19.1.0.54</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfPicker">
+      <Version>19.1.0.54</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfProgressBar">
+      <Version>19.1.0.54</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh">
+      <Version>19.1.0.54</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfRangeSlider">
+      <Version>19.1.0.54</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfRating">
+      <Version>19.1.0.54</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="19.1.0.54" />
+    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="19.1.0.54" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="19.1.0.54" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.4.0.30" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="19.1.0.54" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="19.1.0.54" />
+    <PackageReference Include="Syncfusion.Xamarin.SfAutoComplete" Version="19.1.0.54" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\Tabbar.axml" />
+    <AndroidResource Include="Resources\layout\Toolbar.axml" />
+    <AndroidResource Include="Resources\values\styles.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\logoavatar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\logoavatar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\logoavatar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxhdpi\logoavatar.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties TriggeredFromHotReload="False" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

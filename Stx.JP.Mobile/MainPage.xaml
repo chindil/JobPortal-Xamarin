@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:local="clr-namespace:Stx.JP.Mobile"
+        xmlns:views="clr-namespace:Stx.JP.Mobile.Views.Candidate"
+        xmlns:viewsProfile="clr-namespace:Stx.JP.Mobile.Views.Profile"
+        xmlns:test="clr-namespace:Stx.JP.Mobile.Views.Navigation"
+        xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
+        xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+        xmlns:listview="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+        xmlns:checkbox="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+        xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+        xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+        xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+        x:Class="Stx.JP.Mobile.MainPage"            
+        xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+        android:TabbedPage.ToolbarPlacement="Bottom"
+        android:TabbedPage.BarSelectedItemColor="{DynamicResource PrimaryColor}"
+        android:TabbedPage.BarItemColor="{DynamicResource Gray-600}"
+        BarBackgroundColor="{DynamicResource Gray-100}" 
+        NavigationPage.HasNavigationBar="False" android:TabbedPage.IsSwipePagingEnabled="False" >
+    
+    <TabbedPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </TabbedPage.Resources>
+
+    <views:JobSearchPage Title="Jobs">
+        <views:JobSearchPage.IconImageSource>
+            <FontImageSource FontFamily="{StaticResource FontIcons}" Glyph="{StaticResource Search}"/>
+        </views:JobSearchPage.IconImageSource>
+    </views:JobSearchPage>
+    
+    <views:MySavedDataPage Title="Saved">
+        <views:MySavedDataPage.IconImageSource>
+            <FontImageSource FontFamily="{StaticResource FontIcons}" Glyph="{StaticResource Favourite}" />
+        </views:MySavedDataPage.IconImageSource>
+    </views:MySavedDataPage>
+
+    <views:MyNotificationPage Title="Notifications">
+        <views:MyNotificationPage.IconImageSource>
+            <FontImageSource FontFamily="{StaticResource FontIcons}" Glyph="{StaticResource Notification}" />
+        </views:MyNotificationPage.IconImageSource>
+    </views:MyNotificationPage>
+    
+    <!--<test:AlbumPage Title="Progress">
+        <test:AlbumPage.IconImageSource>
+            <FontImageSource FontFamily="{StaticResource FontIcons}" Glyph="{StaticResource AlbumsIcon}" Size="10"/>
+        </test:AlbumPage.IconImageSource>
+    </test:AlbumPage>-->
+    
+    <viewsProfile:ProfileMenuPage Title="Profile">
+        <viewsProfile:ProfileMenuPage.IconImageSource>
+            <FontImageSource FontFamily="{StaticResource FontIcons}" Glyph="{StaticResource UserAvatar}" />
+        </viewsProfile:ProfileMenuPage.IconImageSource>
+    </viewsProfile:ProfileMenuPage>
+    
+</TabbedPage>    

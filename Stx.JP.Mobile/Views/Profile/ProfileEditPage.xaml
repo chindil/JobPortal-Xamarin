@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+             x:Class="Stx.JP.Mobile.Views.Profile.ProfileEditPage"
+             x:Name="profileEditPage"
+             NavigationPage.HasNavigationBar="False"
+             >
+
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <!--<converter:BooleanToStringConverter x:Key="boolToStringConverter" />-->
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <!-- Title Bar View -->
+            <Grid RowSpacing="0" ColumnSpacing="0" HeightRequest="45" >
+                <syncfusion:SfButton x:Name="BtnBack" Margin="8,0" Text="{StaticResource Back}" CornerRadius="4" 
+                                     Style="{StaticResource IconButtonStyle}" HorizontalOptions="Start" VerticalOptions="Center" Clicked="BtnCancel_Clicked"/>
+                <Label Text="Profile" TextColor="{DynamicResource PrimaryColor}" Margin="0,0,10,0" FontAttributes="Bold" FontSize="18" 
+                       HorizontalOptions="Center" VerticalOptions="Center" />
+                <!--<syncfusion:SfButton x:Name="BtnDelete" Margin="8,0" Text="{StaticResource Delete}" CornerRadius="4" 
+                                     Style="{StaticResource IconButtonStyle}" HorizontalOptions="End" VerticalOptions="Center" 
+                                     TextColor="{DynamicResource Red}"                                      
+                                     Command="{Binding BindingContext.RemoveRecordButtonCommand, Source={x:Reference profileEditPage}}" CommandParameter="{Binding}" />-->
+            </Grid>
+
+            <!-- Seperator -->
+            <BoxView HeightRequest="1" BackgroundColor="{DynamicResource Gray-300}" Margin="0,0,0,0"/>
+
+            <ScrollView>
+                <StackLayout>
+                    <!--Profile Image & Headers-->
+                    <Grid x:Name="GrdHeader" Grid.Row="0" Margin="0,0,0,0" Padding="0,2,0,0" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <border:SfBorder Grid.Row="0" Grid.Column="0" Margin="0" BackgroundColor="{DynamicResource Gray-900}" 
+                            BorderColor="White" BorderWidth="2" CornerRadius="40" HasShadow="True" HorizontalOptions="Center" 
+                            VerticalOptions="StartAndExpand" HeightRequest="60" WidthRequest="60" >
+                            <sfavatar:SfAvatarView 
+                                ContentType="AvatarCharacter" AvatarCharacter="Avatar8"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"   
+                                HeightRequest="50" WidthRequest="50" CornerRadius="25" >
+                                <sfavatar:SfAvatarView.ImageSource>
+                                    <UriImageSource Uri="{Binding BaseEntry.CandidateID}" CacheValidity="14"  CachingEnabled="true"/>
+                                </sfavatar:SfAvatarView.ImageSource>
+                            </sfavatar:SfAvatarView>
+                        </border:SfBorder>
+                    </Grid>
+
+                    <Grid x:Name="GridEntryExpr" ColumnSpacing="10" RowSpacing="0" Margin="0,4" Padding="8,10" BackgroundColor="{DynamicResource Gray-200}" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <inputLayout:SfTextInputLayout Grid.Row="0" Hint="First Name" ContainerType="None" Padding="10,0" Margin="0" BackgroundColor="{DynamicResource Gray-White}" >
+                            <Entry Text="{Binding BaseEntry.FirstName, Mode=TwoWay}" />
+                        </inputLayout:SfTextInputLayout>
+
+                        <inputLayout:SfTextInputLayout Grid.Row="1" Hint="Last Name" ContainerType="None" Padding="10,0" BackgroundColor="{DynamicResource Gray-White}">
+                            <Entry Text="{Binding BaseEntry.LastName, Mode=TwoWay}" />
+                        </inputLayout:SfTextInputLayout>
+
+                        <inputLayout:SfTextInputLayout Grid.Row="2" Hint="Job Title" ContainerType="None" Padding="10,0" BackgroundColor="{DynamicResource Gray-White}">
+                            <Entry Text="{Binding BaseEntry.CurrOccupation, Mode=TwoWay}" />
+                        </inputLayout:SfTextInputLayout>
+
+                        <inputLayout:SfTextInputLayout Grid.Row="3" Hint="Mobile" ContainerType="None" Padding="10,0" BackgroundColor="{DynamicResource Gray-White}">
+                            <Entry Text="{Binding BaseEntry.Mobile, Mode=TwoWay}" />
+                        </inputLayout:SfTextInputLayout>
+
+                        <inputLayout:SfTextInputLayout Grid.Row="3" Hint="Current City" ContainerType="None" Padding="10,0" BackgroundColor="{DynamicResource Gray-White}">
+                            <Entry Text="{Binding BaseEntry.City, Mode=TwoWay}" />
+                        </inputLayout:SfTextInputLayout>
+
+                        <inputLayout:SfTextInputLayout Grid.Row="4" Hint="About Me" ContainerType="None" Padding="10,4" BackgroundColor="{DynamicResource Gray-White}">
+                            <Editor Text="{Binding BaseEntry.Description, Mode=TwoWay}" Margin="4" />
+                        </inputLayout:SfTextInputLayout>
+
+                    </Grid>
+
+                    <Grid HorizontalOptions="FillAndExpand" Margin="0,2,0,20" Padding="12,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.4*" />
+                            <ColumnDefinition Width="0.6*" />
+                        </Grid.ColumnDefinitions>
+                        <syncfusion:SfButton x:Name="BtnCancel" Grid.Column="0" Text="Cancel" Style="{StaticResource SquareButtonStyle}" Clicked="BtnCancel_Clicked"
+                                             HeightRequest="45" HorizontalOptions="Fill"/>
+                        <syncfusion:SfButton x:Name="BtnApply" Grid.Column="1" 
+                                             Text="Save" Command="{Binding BindingContext.ApplyButtonCommand, Source={x:Reference profileEditPage}}" CommandParameter="{Binding}" 
+                                             CornerRadius="1" HorizontalOptions="Fill"/>
+                    </Grid>
+                    
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
